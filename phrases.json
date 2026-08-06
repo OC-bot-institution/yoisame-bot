@@ -37,6 +37,11 @@
             "keys": ["地下帝国"],
             "replies": ["地下帝国！？"],
             "probability": 0.5
+        },
+        {
+            "keys": ["めでたい","おめでとう"],
+            "replies": ["本当におめでとー！","おめでとうだよ！！"],
+            "probability": 0.5
         }
     ],
     "endswith": [

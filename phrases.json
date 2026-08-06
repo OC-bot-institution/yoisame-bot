@@ -27,6 +27,11 @@
             "keys": ["目が覚め","目がさめ","目覚め"],
             "replies": ["目が覚めたらここは未来の僕が描く場所🎶"],
             "probability": 1
+        },
+        {
+            "keys": ["泣く"],
+            "replies": ["ﾋｨﾝ"],
+            "probability": 0.5
         }
     ],
     "endswith": [

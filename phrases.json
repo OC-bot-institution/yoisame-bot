@@ -35,7 +35,11 @@
         }
     ],
     "endswith": [
-
+        {
+            "keys": ["待っててね","まっててね"],
+            "replies": ["うん！わかった！"],
+            "probability": 1
+        }
     ],
 
     "ordered": [
@@ -47,6 +51,11 @@
         {
             "keys": ["&raina&てあげる"],
             "replies": ["うれしいよーますたー！"],
+            "probability": 1
+        },
+        {
+            "keys": ["&raina&&call&かわい","&raina&&call&可愛い"],
+            "replies": ["え！？ぼくが！？うれしい！"],
             "probability": 1
         }
     ],

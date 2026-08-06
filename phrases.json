@@ -32,6 +32,11 @@
             "keys": ["泣く"],
             "replies": ["ﾋｨﾝ"],
             "probability": 0.5
+        },
+        {
+            "keys": ["地下帝国"],
+            "replies": ["地下帝国！？"],
+            "probability": 0.5
         }
     ],
     "endswith": [

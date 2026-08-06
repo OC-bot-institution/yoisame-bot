@@ -57,6 +57,11 @@
             "keys": ["&raina&&call&かわい","&raina&&call&可愛い"],
             "replies": ["え！？ぼくが！？うれしい！"],
             "probability": 1
+        },
+        {
+            "keys": ["&raina&&call&してあげてね","&tsugune&&call&してあげてね"],
+            "replies": ["もちろんだよ！！"],
+            "probability": 0.8
         }
     ],
     "mention": {

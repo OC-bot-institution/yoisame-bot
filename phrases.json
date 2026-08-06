@@ -1,0 +1,48 @@
+{
+    "exact": [
+        {
+            "keys": ["おっはよー","おはよう","おはよー"],
+            "replies": ["まだねむいよ...","おはよぉ！"],
+            "probability": 0.5
+        },
+        {
+            "keys": ["&raina&&call&"],
+            "replies": ["はーい！","はぁい～","ﾊｰｲ！！！！"],
+            "probability": 1
+        }
+    ],
+
+    "contains": [
+        {
+            "keys": ["偉いな","えらいな"],
+            "replies": ["偉いなのRainaの部分"],
+            "probability": 1
+        },
+        {
+            "keys": ["やってるなぁ"],
+            "replies": ["やってるなぁのLUNARの部分"],
+            "probability": 1
+        }
+
+    ],
+    "endswith": [
+
+    ],
+
+    "ordered": [
+        {
+            "keys": ["&raina&てあげる"],
+            "replies": ["うれしいよーますたー！"],
+            "probability": 1
+        }
+    ],
+    "mention": {
+        "replies": [
+            "はぁい～",
+            "ぼくもう眠いよ……",
+            "ますたーーーーーーーーー！",
+            "るなーさんのうにすき",
+            "みんなともっとおはなししたぁい"
+        ]
+    }
+}

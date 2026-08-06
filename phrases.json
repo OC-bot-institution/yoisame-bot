@@ -22,14 +22,23 @@
             "keys": ["やってるなぁ"],
             "replies": ["やってるなぁのLUNARの部分"],
             "probability": 1
+        },
+        {
+            "keys": ["目が覚め","目がさめ","目覚め"],
+            "replies": ["目が覚めたらここは未来の僕が描く場所🎶"],
+            "probability": 1
         }
-
     ],
     "endswith": [
 
     ],
 
     "ordered": [
+        {
+            "keys": ["世界すぎ"],
+            "replies": ["光あれ世界、どうか・・・！"],
+            "probability": 1
+        },
         {
             "keys": ["&raina&てあげる"],
             "replies": ["うれしいよーますたー！"],

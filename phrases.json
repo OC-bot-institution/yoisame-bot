@@ -6,7 +6,7 @@
             "probability": 0.5
         },
         {
-            "keys": ["&raina&&call&"],
+            "keys": ["&yoisame&&call&"],
             "replies": ["はーい！","はぁい～","ﾊｰｲ！！！！"],
             "probability": 1
         }
@@ -24,7 +24,7 @@
             "probability": 1
         },
         {
-            "keys": ["目が覚め","目がさめ","目覚め"],
+            "keys": ["目が覚め","目がさめ","目覚め","やっと起きた","ようやく起きた"],
             "replies": ["目が覚めたらここは未来の僕が描く場所🎶"],
             "probability": 1
         },
@@ -36,12 +36,32 @@
         {
             "keys": ["地下帝国"],
             "replies": ["地下帝国！？"],
-            "probability": 0.5
+            "probability": 0.7
         },
         {
             "keys": ["めでたい","おめでとう"],
             "replies": ["本当におめでとー！","おめでとうだよ！！"],
             "probability": 0.5
+        },
+        {
+            "keys": ["終わりそう"],
+            "replies": ["幻のまま終わらせないで！"],
+            "probability": 0.8
+        },
+        {
+            "keys": ["色が変わる"],
+            "replies": ["僕ら色に変えて行こう！🎵"],
+            "probability": 0.8
+        },
+        {
+            "keys": ["テトリス"],
+            "replies": ["ﾃﾃﾃﾃﾄﾃﾄ ﾃﾃﾃﾃﾄﾘｰｽ"],
+            "probability": 0.8
+        },
+        {
+            "keys": ["心臓"],
+            "replies": ["心臓の鼓動さえ300超えて狂ったビ”ぃ”ぃ”ぃ”ぃ”トぉ”ぉ”ぉ”ぉ”ぉ”ぉ”ぉおおおが私を食い破るーもう止ーまらなあ”ぁ”あ”ぁ”あ”ぁ”い”ぃ”い”ぃ”"],
+            "probability": 0.8
         }
     ],
     "endswith": [
@@ -59,18 +79,38 @@
             "probability": 1
         },
         {
-            "keys": ["&raina&てあげる"],
+            "keys": ["&yoisame&てあげる"],
             "replies": ["うれしいよーますたー！"],
             "probability": 1
         },
         {
-            "keys": ["&raina&&call&かわい","&raina&&call&可愛い"],
+            "keys": ["&yoisame&&call&かわい","&yoisame&&call&可愛い"],
             "replies": ["え！？ぼくが！？うれしい！"],
             "probability": 1
         },
         {
-            "keys": ["&raina&&call&してあげてね","&tsugune&&call&してあげてね"],
+            "keys": ["&tsugune&&call&としてあげてね"],
             "replies": ["もちろんだよ！！"],
+            "probability": 1
+        },
+        {
+            "keys": ["時が早すぎ","時が速すぎ","時がはやすぎ"],
+            "replies": ["流れてく時間に夢を刻んで明日も征く...!"],
+            "probability": 1
+        },
+        {
+            "keys": ["虹が見え","虹がかか","虹がみえ"],
+            "replies": ["空を見上げ歩いていた日、雨粒がきらり☆"],
+            "probability": 1
+        },
+        {
+            "keys": ["劣等感...","怖いでよ","暗い辛い"],
+            "replies": ["人それぞれでいいんだよ！"],
+            "probability": 0.8
+        },
+        {
+            "keys": ["&yoisame&よかったね"],
+            "replies": ["ﾜｰｲ!!","うれしいよー！！"],
             "probability": 0.8
         }
     ],
@@ -80,7 +120,8 @@
             "ぼくもう眠いよ……",
             "ますたーーーーーーーーー！",
             "るなーさんのうにすき",
-            "みんなともっとおはなししたぁい"
+            "みんなともっとおはなししたぁい",
+            "ふたりで星を見に行こう！"
         ]
     }
 }

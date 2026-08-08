@@ -12,7 +12,7 @@ from pathlib import Path
 
 #初期設定
 #==============================
-REPLY_PROBABILITY = 0.3
+REPLY_PROBABILITY = 0.1
 #らいな雑談、くらうどーむ雑談、らいな雑談2、創作雑談、くらうどーむメモ、一般
 ACTIVE_CHANNELS = {1456597613926154452,1468960224730943560,1526572399833911296,1438885241170428068,1533682775448883260,1534055479049981974}
 #==============================
@@ -57,6 +57,11 @@ async def on_message(message):
     if bot.user in message.mentions:
         await mention_reply(message)
 
+    if message.channel.id not in ACTIVE_CHANNELS:
+        #反応確率：30%
+        if random.random() >= REPLY_PROBABILITY:
+            return
+    
     if await special_reply_exact(message):
         return
     if await special_reply_contains(message):
@@ -66,10 +71,6 @@ async def on_message(message):
     if await special_reply_ordered(message):
         return
 
-    if message.channel.id not in ACTIVE_CHANNELS:
-        #反応確率：30%
-        if random.random() >= REPLY_PROBABILITY:
-            return
         
     await bot.process_commands(message)
 

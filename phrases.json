@@ -14,6 +14,21 @@
 
     "contains": [
         {
+            "keys": ["&yoisame&&call&おはよ","おはらいな"],
+            "replies": ["おはらいな～！","おはらいな！","おはらいな～","おはらいな🌅"],
+            "probability": 1
+        },
+        {
+            "keys": ["&yoisame&&call&おやす","おやらいな","おやらいな🌙"],
+            "replies": ["おやらいな～！","おやらいな！","おやらいな～"],
+            "probability": 1
+        },
+        {
+            "keys": ["&yoisame&&call&こんばん","&yoisame&&call&こんにち","こんらいな"],
+            "replies": ["こんらいな～！","こんらいな！","こんらいな～","こんらいな🌂"],
+            "probability": 1
+        },
+        {
             "keys": ["偉いな","えらいな"],
             "replies": ["偉いなのRainaの部分"],
             "probability": 1

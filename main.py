@@ -7,16 +7,32 @@ from special_reply import init,special_reply_exact,special_reply_contains,specia
 from discord.ext import commands
 import asyncio
 import random
-import json
-from pathlib import Path
+from util import load_json
 
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 #初期設定
 #==============================
+# アクティブでないチャンネルで発言する確率
 REPLY_PROBABILITY = 0.1
-#らいな雑談、くらうどーむ雑談、らいな雑談2、創作雑談、くらうどーむメモ、一般
-ACTIVE_CHANNELS = {1456597613926154452,1468960224730943560,1526572399833911296,1438885241170428068,1533682775448883260,1534055479049981974}
-#==============================
 
+# 毎日おはよう設定
+TARGET_CHANNEL_IDS = [
+    123456789012345678,
+    234567890123456789,
+    345678901234567890,
+]
+NORMAL_PROBABILITY = 0.12
+NEBOU_PROBABILITY = 0.02
+HAYAI_PROBABILITY = 0.02
+JST = ZoneInfo("Asia/Tokyo")
+#==============================
+channels = load_json("channels.json")
+ACTIVE_CHANNELS = {
+    int(channel_id)
+    for channel_id in channels
+}
+daily_message_task = None
 
 
 load_dotenv()
@@ -33,12 +49,93 @@ bot = commands.Bot(
     intents=intents
 )
 
+
+
+# 決まった時間の固定メッセージ
+# 時間も、基準の時間から±30分ぐらい前後してランダムに選びたい
+async def daily_message():
+    while True:
+        now = datetime.now(JST)
+
+        # 今日の07:00を基準にする
+        base_time = now.replace(
+            hour=7,
+            minute=0,
+            second=0,
+            microsecond=0
+        )
+
+        status = "none"
+        probability = random.random()
+
+        # 寝坊
+        if probability < NEBOU_PROBABILITY:
+            offset = random.randint(180, 210)
+            status = "nebou"
+
+        # 早起き
+        elif probability < NEBOU_PROBABILITY + HAYAI_PROBABILITY:
+            offset = random.randint(-210, -180)
+            status = "hayai"
+
+        # 通常
+        elif probability < (
+            NEBOU_PROBABILITY
+            + HAYAI_PROBABILITY
+            + NORMAL_PROBABILITY
+        ):
+            offset = random.randint(-30, 30)
+            status = "normal"
+
+        # それ以外は送信しない
+        else:
+            offset = random.randint(-30, 30)
+            status = "none"
+
+        target = base_time + timedelta(minutes=offset)
+        # すでに実行時刻を過ぎていたら明日の07:00を基準にする
+        if target <= now:
+            target += timedelta(days=1)
+
+        # 次回実行まで待つ
+        wait_seconds = (target - now).total_seconds()
+
+        print(
+            f"次回の定期メッセージ: "
+            f"{target.strftime('%Y-%m-%d %H:%M:%S')}"
+            f"status : {status}"
+        )
+
+        await asyncio.sleep(wait_seconds)
+
+        # チャンネルをランダムに1つ選択
+        channel_id = random.choice(TARGET_CHANNEL_IDS)
+        channel = bot.get_channel(channel_id)
+
+        if channel is None:
+            print(f"チャンネルが見つかりません: {channel_id}")
+            continue
+
+        phrase = random.choice(
+            ["おはらいな～！！","おはらいな！","おはらいな☀️"]
+        )
+        if status == "nebou":
+            phrase += "......まだ眠いよ。。。"
+        elif status == "hayai":
+            phrase += "はやおきしてえらい！！"
+        await channel.send(phrase)
+
+
 # discordと接続した時に呼ばれる
 @bot.event
 async def on_ready():
+    global daily_message_task
     await bot.tree.sync()
 
-    #bot.loop.create_task(console_loop())
+    if daily_message_task is None or daily_message_task.done():
+        daily_message_task = asyncio.create_task(
+            daily_message()
+        )
 
     print(f"ログインしました: {bot.user}")
 

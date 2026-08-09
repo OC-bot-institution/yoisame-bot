@@ -6,10 +6,7 @@ import re
 from itertools import product
 import unicodedata
 
-def load_json(filename):
-    path = Path(__file__).parent / filename
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+from util import load_json
     
 #フレーズ
 phrases = load_json("phrases.json")

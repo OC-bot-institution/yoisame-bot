@@ -175,20 +175,36 @@ async def on_message(message):
     name="sleep",
     description="30分寝ます"
 )
-async def sleep(interaction: discord.Interaction):
-
+@bot.tree.command(
+    name="sleep",
+    description="しばらく反応しなくなります"
+)
+async def sleep(
+    interaction: discord.Interaction,
+    minutes: int
+):
     global bot_status
 
+    if bot_status=="sleep":
+        await interaction.response.send_message("ｽﾔｧ...")
+        return
+    
     bot_status = "sleep"
-
     await interaction.response.send_message(
-        "30分だけ寝ますおやすみ！！！！！"
+        f"{minutes}分だけ寝ます。おやすみ！！！！！"
     )
-
-    await asyncio.sleep(1800)
-
+    await asyncio.sleep(minutes * 60)
     bot_status = "awake"
 
+
+@bot.tree.command(
+    name="awake",
+    description="反応するようになります"
+)
+async def awake(interaction: discord.Interaction,):
+    global bot_status
+    bot_status = "awake"
+    await interaction.response.send_message(f"おはらいな☆")
 
 # クライアントの実行
 bot.run(api_key)

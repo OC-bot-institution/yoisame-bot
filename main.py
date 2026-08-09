@@ -173,10 +173,6 @@ async def on_message(message):
 
 @bot.tree.command(
     name="sleep",
-    description="30分寝ます"
-)
-@bot.tree.command(
-    name="sleep",
     description="しばらく反応しなくなります"
 )
 async def sleep(

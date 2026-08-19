@@ -23,7 +23,7 @@ from bot_common.util import (
     load_json
 )
 
-
+from bot_common.change_icon import change_icon
 
 #初期設定
 #==============================
@@ -43,6 +43,7 @@ NEBOU_PROBABILITY = 0.02
 HAYAI_PROBABILITY = 0.02
 JST = ZoneInfo("Asia/Tokyo")
 daily_message_task = None
+icon_task = None
 
 
 # アクティブチャンネル
@@ -113,6 +114,7 @@ def build_daily_message(status: str) -> str:
 @bot.event
 async def on_ready():
     global daily_message_task
+    global icon_task
     await bot.tree.sync()
 
     if daily_message_task is None or daily_message_task.done():
@@ -125,6 +127,10 @@ async def on_ready():
                 hayai_probability=HAYAI_PROBABILITY,
                 message_builder=build_daily_message,
             )
+        )
+    if icon_task is None or icon_task.done():
+        icon_task = asyncio.create_task(
+            change_icon(bot,"icons")
         )
 
     print(f"ログインしました: {bot.user}")

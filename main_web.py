@@ -146,8 +146,8 @@ async def on_message(message):
 
     user_name = get_user_name(message,names)
 
-    if bot.user in message.mentions:
-        await mention_reply(message,mentions,user_name)
+    if bot.user in message.mentions and bot.user.mention in message.content:
+        await mention_reply(message, mentions, user_name)
         return
 
     if message.channel.id not in ACTIVE_CHANNELS:

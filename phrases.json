@@ -137,6 +137,11 @@
             "keys": ["&yoisame&よかったね"],
             "replies": ["ﾜｰｲ!!","うれしいよー！！"],
             "probability": 0.8
+        },
+        {
+            "keys": ["眠そう","&yoisame&おきてる","&yoisame&まだ寝てる"],
+            "replies": ["ねむいよ(-ω-)","💤","むにゃぁ..."],
+            "probability": 1
         }
     ],
     "mention": {

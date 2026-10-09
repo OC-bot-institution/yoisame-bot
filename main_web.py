@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import asyncio
 import random
-from bot_common.daily_message import daily_message_loop
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -32,17 +31,7 @@ from bot_common.change_icon import change_icon
 REPLY_PROBABILITY = 0.1
 
 
-# 毎日おはよう設定
-ohayou_channels = load_common_json("ohayou_channels.json")
-TARGET_CHANNEL_IDS = {
-    int(channel_id)
-    for channel_id in ohayou_channels
-}
-NORMAL_PROBABILITY = 0.12
-NEBOU_PROBABILITY = 0.02
-HAYAI_PROBABILITY = 0.02
 JST = ZoneInfo("Asia/Tokyo")
-daily_message_task = None
 icon_task = None
 
 
@@ -85,49 +74,15 @@ bot = commands.Bot(
 
 
 
-async def send_daily_message(text: str):
-    channel_id = random.choice(TARGET_CHANNEL_IDS)
-    channel = bot.get_channel(channel_id)
-
-    if channel is None:
-        print(f"チャンネルが見つかりません: {channel_id}")
-        return
-
-    await channel.send(text)
-
-def build_daily_message(status: str) -> str:
-    phrase = random.choice(
-        ["おはらいな～！！","おはらいな！","おはらいな☀️"]
-    )
-
-    if status == "nebou":
-        phrase += "......まだ眠いよ。。。"
-
-    elif status == "hayai":
-        phrase += "はやおきしてえらい！！"
-
-    return phrase
 
 
 
 # discordと接続した時に呼ばれる
 @bot.event
 async def on_ready():
-    global daily_message_task
     global icon_task
     await bot.tree.sync()
 
-    if daily_message_task is None or daily_message_task.done():
-        daily_message_task = asyncio.create_task(
-            daily_message_loop(
-                send_message=send_daily_message,
-                timezone=JST,
-                normal_probability=NORMAL_PROBABILITY,
-                nebou_probability=NEBOU_PROBABILITY,
-                hayai_probability=HAYAI_PROBABILITY,
-                message_builder=build_daily_message,
-            )
-        )
     if icon_task is None or icon_task.done():
         icon_task = asyncio.create_task(
             change_icon(bot,"icons")
